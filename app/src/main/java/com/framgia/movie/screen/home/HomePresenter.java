@@ -23,4 +23,8 @@ final class HomePresenter implements HomeContract.Presenter {
     @Override
     public void onStop() {
     }
+
+    @Override
+    public void loadGenres() {
+    }
 }

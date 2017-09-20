@@ -1,15 +1,21 @@
 package com.framgia.movie.screen.home;
 
+import android.content.Context;
+import android.databinding.BaseObservable;
+import com.framgia.movie.data.model.Genre;
+import java.util.List;
 
 /**
  * Exposes the data to be used in the Home screen.
  */
 
-public class HomeViewModel implements HomeContract.ViewModel {
+public class HomeViewModel extends BaseObservable implements HomeContract.ViewModel {
 
+    private Context mContext;
     private HomeContract.Presenter mPresenter;
 
-    public HomeViewModel() {
+    public HomeViewModel(Context context) {
+        mContext = context;
     }
 
     @Override
@@ -25,5 +31,11 @@ public class HomeViewModel implements HomeContract.ViewModel {
     @Override
     public void setPresenter(HomeContract.Presenter presenter) {
         mPresenter = presenter;
+        mPresenter.loadGenres();
+    }
+
+    @Override
+    public void onGetGenresSuccess(List<Genre> genres) {
+
     }
 }

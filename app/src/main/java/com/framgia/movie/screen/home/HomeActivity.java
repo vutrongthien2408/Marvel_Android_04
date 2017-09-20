@@ -2,7 +2,6 @@ package com.framgia.movie.screen.home;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-
 import com.framgia.movie.R;
 import com.framgia.movie.databinding.ActivityHomeBinding;
 import com.framgia.movie.screen.BaseActivity;
@@ -17,15 +16,12 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mViewModel = new HomeViewModel(this);
 
-        mViewModel = new HomeViewModel();
-
-        HomeContract.Presenter presenter =
-                new HomePresenter(mViewModel);
+        HomeContract.Presenter presenter = new HomePresenter(mViewModel);
         mViewModel.setPresenter(presenter);
 
-        ActivityHomeBinding binding =
-                DataBindingUtil.setContentView(this, R.layout.activity_home);
+        ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         binding.setViewModel((HomeViewModel) mViewModel);
     }
 
