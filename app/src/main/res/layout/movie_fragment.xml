@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.framgia.movie.screen.movie.MovieFragmentViewModel"
+            type="com.framgia.movie.screen.movie.MovieViewModel"
             />
 
     </data>
