@@ -1,4 +1,4 @@
-package com.framgia.movie.data.source.remote.api.action_movie_api;
+package com.framgia.movie.data.model;
 
 import com.framgia.movie.data.model.Movie;
 import com.google.gson.annotations.Expose;

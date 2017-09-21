@@ -1,7 +1,6 @@
 package com.framgia.movie.data.source;
 
 import com.framgia.movie.data.model.Movie;
-import com.framgia.movie.data.source.remote.api.action_movie_api.MovieResponse;
 import io.reactivex.Observable;
 import java.util.List;
 
