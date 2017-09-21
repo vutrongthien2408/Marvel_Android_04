@@ -2,10 +2,10 @@ package com.framgia.movie.data.source.remote;
 
 import com.framgia.movie.BuildConfig;
 import com.framgia.movie.data.model.Movie;
-import com.framgia.movie.data.source.remote.api.action_movie_api.MovieResponse;
+import com.framgia.movie.data.model.MovieResponse;
 import com.framgia.movie.data.source.MovieDataSource;
 import com.framgia.movie.data.source.remote.api.ServiceGenerator;
-import com.framgia.movie.data.source.remote.api.action_movie_api.ActionMovieApi;
+import com.framgia.movie.data.source.remote.api.the_movie_api.TheMovieApi;
 import com.framgia.movie.screen.BaseActivity;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 
 public final class MovieRemoteDataSource implements MovieDataSource.RemoteDataSource {
-    private ActionMovieApi mMovieApi;
+    private TheMovieApi mMovieApi;
     private static MovieRemoteDataSource sMovieRemoteDataSource;
 
     private MovieRemoteDataSource() {
-        mMovieApi = ServiceGenerator.createService(ActionMovieApi.class);
+        mMovieApi = ServiceGenerator.createService(TheMovieApi.class);
     }
 
     public static MovieRemoteDataSource getInstance() {
