@@ -15,11 +15,15 @@ import com.framgia.movie.screen.BaseFragment;
  * Movie Screen.
  */
 public class MovieFragment extends BaseFragment {
-
+    public static final String BUNDLE_GENRE_ID = "BUNDLE_GENRE_ID";
     private MovieContract.ViewModel mViewModel;
 
-    public static MovieFragment newInstance() {
-        return new MovieFragment();
+    public static MovieFragment newInstance(int genreId) {
+        MovieFragment movieFragment = new MovieFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(BUNDLE_GENRE_ID, genreId);
+        movieFragment.setArguments(bundle);
+        return movieFragment;
     }
 
     @Override
@@ -34,7 +38,6 @@ public class MovieFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-
         MovieFragmentBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.movie_fragment, container, false);
         binding.setViewModel((MovieViewModel) mViewModel);

@@ -14,6 +14,7 @@ interface MovieContract {
      */
     interface ViewModel extends BaseViewModel<Presenter> {
         void onGetMovieSuccess(List<Movie> movies);
+
         void onGetMovieFail(String msg);
     }
 
