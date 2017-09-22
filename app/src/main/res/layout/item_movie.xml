@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
@@ -11,6 +12,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardview_default_radius"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,6 +25,7 @@
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="@dimen/dp_80"
                 android:src="@mipmap/ic_launcher_round"
+                bind:setImage="@{movie.posterPath}"
                 tools:ignore="ContentDescription"
                 />
             <LinearLayout
@@ -34,19 +37,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{movie.title}"
+                    android:textStyle="bold"
+                    style="?android:attr/textAppearanceLarge"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="@integer/int_2"
+                    android:text="@{movie.overview}"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{movie.voteAverage}"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:text="@{movie.releaseDate}"
                     android:textAlignment="viewEnd"
                     />
             </LinearLayout>

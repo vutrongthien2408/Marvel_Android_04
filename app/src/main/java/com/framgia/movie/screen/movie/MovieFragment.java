@@ -29,8 +29,12 @@ public class MovieFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        savedInstanceState = getArguments();
+        int genreId = savedInstanceState.getInt(BUNDLE_GENRE_ID);
+
         mViewModel = new MovieViewModel();
-        MovieContract.Presenter presenter = new MoviePresenter(mViewModel);
+        MovieContract.Presenter presenter = new MoviePresenter(mViewModel, genreId);
         mViewModel.setPresenter(presenter);
     }
 
