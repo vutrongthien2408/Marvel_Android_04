@@ -15,8 +15,6 @@ import java.util.List;
  * the UI as required.
  */
 final class HomePresenter implements HomeContract.Presenter {
-
-    private static final String TAG = "HomePresenter";
     private GenreRepository mGenreRepository;
 
     private final HomeContract.ViewModel mViewModel;
@@ -24,7 +22,6 @@ final class HomePresenter implements HomeContract.Presenter {
 
     public HomePresenter(HomeContract.ViewModel viewModel) {
         mViewModel = viewModel;
-
         mCompositeDisposable = new CompositeDisposable();
         mGenreRepository = GenreRepository.getInstance(GenreRemoteDataSource.getInstance());
     }

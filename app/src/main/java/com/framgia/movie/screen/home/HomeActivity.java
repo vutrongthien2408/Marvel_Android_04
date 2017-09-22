@@ -2,6 +2,7 @@ package com.framgia.movie.screen.home;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import com.framgia.movie.R;
 import com.framgia.movie.databinding.ActivityHomeBinding;
 import com.framgia.movie.screen.BaseActivity;
@@ -16,7 +17,9 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new HomeViewModel(this);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        mViewModel = new HomeViewModel(this, fragmentManager);
 
         HomeContract.Presenter presenter = new HomePresenter(mViewModel);
         mViewModel.setPresenter(presenter);

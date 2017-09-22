@@ -3,6 +3,7 @@ package com.framgia.movie.screen.movie;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+
 /**
  * Created by TrongThien on 9/20/2017.
  */
