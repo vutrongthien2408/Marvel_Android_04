@@ -21,18 +21,11 @@ final class MoviePresenter implements MovieContract.Presenter {
     private int mGenreId;
     private CompositeDisposable mCompositeDisposable;
 
-    public MoviePresenter(MovieContract.ViewModel viewModel) {
+    public MoviePresenter(MovieContract.ViewModel viewModel, int genreId) {
         mViewModel = viewModel;
+        mGenreId = genreId;
         mCompositeDisposable = new CompositeDisposable();
         mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
-    }
-
-    public int getGenreId() {
-        return mGenreId;
-    }
-
-    public void setGenreId(int genreId) {
-        mGenreId = genreId;
     }
 
     private void getListMovie() {

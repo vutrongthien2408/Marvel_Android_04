@@ -29,7 +29,6 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         return MovieFragment.newInstance(mGenres.get(position).getId());
     }
 

@@ -2,6 +2,7 @@ package com.framgia.movie.screen.movie;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Movie;
 import java.util.List;
 
@@ -16,10 +17,15 @@ public class MovieViewModel extends BaseObservable implements MovieContract.View
     private MovieContract.Presenter mPresenter;
 
     public MovieViewModel() {
+        mAdapter = new MovieAdapter();
     }
 
     public MovieAdapter getAdapter() {
         return mAdapter;
+    }
+
+    public void setAdapter(MovieAdapter adapter) {
+        mAdapter = adapter;
     }
 
     @Override
@@ -40,7 +46,8 @@ public class MovieViewModel extends BaseObservable implements MovieContract.View
 
     @Override
     public void onGetMovieSuccess(List<Movie> movies) {
-
+        mAdapter.setMovies(movies);
+        notifyPropertyChanged(BR.adapter);
     }
 
     @Override
