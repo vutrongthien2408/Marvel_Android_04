@@ -1,11 +1,14 @@
 package com.framgia.movie.screen.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Genre;
+import com.framgia.movie.screen.search_movie.SearchMovieActivity;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ public class HomeViewModel extends BaseObservable implements HomeContract.ViewMo
     private Context mContext;
     private HomeContract.Presenter mPresenter;
     private FragmentManager mManager;
+
     @Bindable
     private HomePagerAdapter mPagerAdapter;
 
@@ -32,6 +36,11 @@ public class HomeViewModel extends BaseObservable implements HomeContract.ViewMo
 
     public void setPagerAdapter(HomePagerAdapter pagerAdapter) {
         mPagerAdapter = pagerAdapter;
+    }
+
+    public void onSearch(View view) {
+        Intent intent = new Intent(view.getContext(), SearchMovieActivity.class);
+        view.getContext().startActivity(intent);
     }
 
     @Override
