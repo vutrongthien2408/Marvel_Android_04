@@ -3,7 +3,7 @@ package com.framgia.movie.data.source.remote;
 import com.framgia.movie.BuildConfig;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.data.model.MovieResponse;
-import com.framgia.movie.data.source.MovieDataSource;
+import com.framgia.movie.data.source.TheMovieRemoteDataSource;
 import com.framgia.movie.data.source.remote.api.ServiceGenerator;
 import com.framgia.movie.data.source.remote.api.the_movie_api.TheMovieApi;
 import com.framgia.movie.screen.BaseActivity;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by TrongThien on 9/19/2017.
  */
 
-public final class MovieRemoteDataSource implements MovieDataSource.RemoteDataSource {
+public final class MovieRemoteDataSource implements TheMovieRemoteDataSource.MovieDataSource {
     private TheMovieApi mMovieApi;
     private static MovieRemoteDataSource sMovieRemoteDataSource;
 
