@@ -2,6 +2,8 @@ package com.framgia.movie.data.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by TrongThien on 9/19/2017.
  */
 
-public class Movie extends BaseObservable {
+public final class Movie extends BaseObservable implements Parcelable {
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
     public static final String TEXT_IMDB = "IMDB: ";
     public static final String TEXT_POPULARITY = "Popularity: ";
@@ -75,5 +77,41 @@ public class Movie extends BaseObservable {
 
     public String getPopularity() {
         return TEXT_POPULARITY + mPopularity;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int i) {
+        out.writeInt(mId);
+        out.writeString(mTitle);
+        out.writeString(mOverview);
+        out.writeString(mPosterPath);
+        out.writeString(mPopularity);
+        out.writeFloat(mVoteAverage);
+        out.writeString(mReleaseDate);
+    }
+
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    private Movie(Parcel in) {
+        mId = in.readInt();
+        mTitle = in.readString();
+        mOverview = in.readString();
+        mPosterPath = in.readString();
+        mPopularity = in.readString();
+        mVoteAverage = in.readFloat();
+        mReleaseDate = in.readString();
     }
 }

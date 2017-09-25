@@ -9,6 +9,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
  */
 final class MovieDetailPresenter implements MovieDetailContract.Presenter {
     private static final String TAG = MovieDetailPresenter.class.getName();
+    private static final int CHARACTOR_LIST_SIZE = 20;
 
     private final MovieDetailContract.ViewModel mViewModel;
     private int mMovieId;
@@ -29,10 +31,6 @@ final class MovieDetailPresenter implements MovieDetailContract.Presenter {
         mViewModel = viewModel;
         mMovieId = movieId;
         mCompositeDisposable = new CompositeDisposable();
-    }
-
-    private void getListCharactor(Movie movie) {
-
     }
 
     @Override
@@ -51,7 +49,15 @@ final class MovieDetailPresenter implements MovieDetailContract.Presenter {
                 .subscribe(new Consumer<List<Charactor>>() {
                     @Override
                     public void accept(List<Charactor> charactors) throws Exception {
-                        mViewModel.onLoadDetailSuccess(charactors);
+                        List<Charactor> charactorList = new ArrayList<>();
+                        if (charactors.size() > CHARACTOR_LIST_SIZE) {
+                            for (int i = 0; i < CHARACTOR_LIST_SIZE; i++) {
+                                charactorList.add(charactors.get(i));
+                            }
+                        } else {
+                            charactorList.addAll(charactors);
+                        }
+                        mViewModel.onLoadDetailSuccess(charactorList);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
