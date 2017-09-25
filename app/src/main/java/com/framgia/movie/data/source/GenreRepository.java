@@ -9,7 +9,7 @@ import java.util.List;
  * Created by TrongThien on 9/21/2017.
  */
 
-public final class GenreRepository implements GenreDataSource.RemoteDataSource {
+public final class GenreRepository implements TheMovieRemoteDataSource.GenreDataSource {
     private GenreRemoteDataSource mRemoteDataSource;
 
     private static GenreRepository sGenreRepository;

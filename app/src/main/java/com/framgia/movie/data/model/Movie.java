@@ -12,6 +12,7 @@ import com.google.gson.annotations.SerializedName;
 public class Movie extends BaseObservable {
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
     public static final String TEXT_IMDB = "IMDB: ";
+    public static final String TEXT_POPULARITY = "Popularity: ";
 
     @SerializedName("id")
     @Expose
@@ -43,6 +44,11 @@ public class Movie extends BaseObservable {
     @Bindable
     private String mPosterPath;
 
+    @SerializedName("popularity")
+    @Expose
+    @Bindable
+    private String mPopularity;
+
     public int getId() {
         return mId;
     }
@@ -65,5 +71,9 @@ public class Movie extends BaseObservable {
 
     public String getPosterPath() {
         return BASE_IMAGE_URL + mPosterPath;
+    }
+
+    public String getPopularity() {
+        return TEXT_POPULARITY + mPopularity;
     }
 }
