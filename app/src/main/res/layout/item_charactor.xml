@@ -8,12 +8,17 @@
             name="charactor"
             type="com.framgia.movie.data.model.Charactor"
             />
+        <variable
+            name="viewModel"
+            type="com.framgia.movie.screen.movie_detail.CharactorItemViewModel"
+            />
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:onClick="@{viewModel.onItemClicked}"
         android:orientation="vertical"
         >
         <ImageView
