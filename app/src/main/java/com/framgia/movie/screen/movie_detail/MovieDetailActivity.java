@@ -35,6 +35,7 @@ public class MovieDetailActivity extends BaseActivity {
         MovieDetailContract.Presenter presenter =
                 new MovieDetailPresenter(mViewModel, movie.getId());
         mViewModel.setPresenter(presenter);
+        mViewModel.setMovieId(movie.getId());
 
         ActivityMovieDetailBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);

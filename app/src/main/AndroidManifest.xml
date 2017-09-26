@@ -22,11 +22,12 @@
             android:name=".screen.search_movie.SearchMovieActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TheMovieTheme"/>
-
         <activity
             android:name=".screen.movie_detail.MovieDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TheMovieTheme"/>
+        <activity
+            android:name=".screen.video_trailer.VideoTrailerActivity"/>
     </application>
 
 </manifest>

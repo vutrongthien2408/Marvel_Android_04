@@ -3,6 +3,7 @@ package com.framgia.movie.data.source.remote.api.the_movie_api;
 import com.framgia.movie.data.model.CharactorRespone;
 import com.framgia.movie.data.model.GenreReponse;
 import com.framgia.movie.data.model.MovieResponse;
+import com.framgia.movie.data.model.MovieTrailerRespone;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -65,4 +66,11 @@ public interface TheMovieApi {
     @GET("{version}/movie/{category}")
     Observable<MovieResponse> loadMovieByCategory(@Path("version") String version,
             @Path("category") String category, @Query("api_key") String apiKey);
+
+    /**
+     * Get the movie trailer
+     */
+    @GET("{version}/movie/{movie_id}/videos")
+    Observable<MovieTrailerRespone> loadMovieTrailer(@Path("version") String version,
+            @Path("movie_id") int movieId, @Query("api_key") String apiKey);
 }
