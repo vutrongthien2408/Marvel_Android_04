@@ -39,8 +39,22 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
     }
 
     @Override
-    public void searchMovieByName() {
-
+    public void searchMovieByName(String name) {
+        Disposable disposable = mMovieRepository.loadMovieByName(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        mViewModel.onSearchSuccess(movies);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mViewModel.onSearchFail(throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     @Override

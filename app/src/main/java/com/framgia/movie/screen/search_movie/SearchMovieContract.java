@@ -22,7 +22,7 @@ interface SearchMovieContract {
      * Presenter.
      */
     interface Presenter extends BasePresenter {
-        void searchMovieByName();
+        void searchMovieByName(String name);
 
         void searchMovieByCharactorId();
     }
