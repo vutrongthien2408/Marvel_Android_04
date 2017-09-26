@@ -43,4 +43,9 @@ public final class MovieRepository implements TheMovieRemoteDataSource.MovieData
     public Observable<List<Movie>> loadMovieByName(String name) {
         return mMovieRemoteDataSource.loadMovieByName(name);
     }
+
+    @Override
+    public Observable<List<Movie>> loadMovieByCategory(String category) {
+        return mMovieRemoteDataSource.loadMovieByCategory(category);
+    }
 }

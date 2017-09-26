@@ -4,8 +4,10 @@ import android.databinding.BindingAdapter;
 
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
@@ -38,5 +40,14 @@ public final class BindingUtils {
     @BindingAdapter({ "setImage" })
     public static void setImageToImageView(ImageView imageView, String url) {
         Glide.with(imageView.getContext()).load(url).into(imageView);
+    }
+
+    @BindingAdapter({ "openNavigation" })
+    public static void openNavigation(DrawerLayout drawerLayout, int gravity) {
+        if (gravity == Gravity.START) {
+            drawerLayout.openDrawer(gravity);
+        } else {
+            drawerLayout.closeDrawers();
+        }
     }
 }

@@ -97,4 +97,20 @@ public final class MovieRemoteDataSource implements TheMovieRemoteDataSource.Mov
                     }
                 });
     }
+
+    @Override
+    public Observable<List<Movie>> loadMovieByCategory(String category) {
+        return mMovieApi.loadMovieByCategory(BaseActivity.API_VERSION, category,
+                BuildConfig.API_KEY)
+                .flatMap(new Function<MovieResponse, ObservableSource<List<Movie>>>() {
+                    @Override
+                    public ObservableSource<List<Movie>> apply(MovieResponse movieResponse)
+                            throws Exception {
+                        if (movieResponse != null) {
+                            return Observable.just(movieResponse.getMovies());
+                        }
+                        return Observable.error(new NullPointerException());
+                    }
+                });
+    }
 }
