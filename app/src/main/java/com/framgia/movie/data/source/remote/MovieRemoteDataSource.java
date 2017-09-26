@@ -2,6 +2,7 @@ package com.framgia.movie.data.source.remote;
 
 import com.framgia.movie.BuildConfig;
 import com.framgia.movie.data.model.Movie;
+import com.framgia.movie.data.model.MovieByCharactorRespone;
 import com.framgia.movie.data.model.MovieResponse;
 import com.framgia.movie.data.source.TheMovieRemoteDataSource;
 import com.framgia.movie.data.source.remote.api.ServiceGenerator;
@@ -41,6 +42,23 @@ public final class MovieRemoteDataSource implements TheMovieRemoteDataSource.Mov
                             throws Exception {
                         if (movieResponse != null) {
                             return Observable.just(movieResponse.getMovies());
+                        }
+                        return Observable.error(new NullPointerException());
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> loadMovieByCharactor(int charactorId) {
+        return mMovieApi.loadMovieByCharactor(BaseActivity.API_VERSION, charactorId,
+                BuildConfig.API_KEY)
+                .flatMap(new Function<MovieByCharactorRespone, ObservableSource<List<Movie>>>() {
+
+                    @Override
+                    public ObservableSource<List<Movie>> apply(
+                            MovieByCharactorRespone movieResponse) throws Exception {
+                        if (movieResponse != null) {
+                            return Observable.just(movieResponse.getMovieByCharactors());
                         }
                         return Observable.error(new NullPointerException());
                     }

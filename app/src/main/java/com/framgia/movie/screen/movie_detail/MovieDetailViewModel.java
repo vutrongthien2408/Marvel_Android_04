@@ -1,29 +1,34 @@
 package com.framgia.movie.screen.movie_detail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v7.widget.GridLayoutManager;
 import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Charactor;
-import java.util.ArrayList;
+import com.framgia.movie.screen.BaseRecyclerViewAdapter;
+import com.framgia.movie.screen.search_movie.SearchMovieActivity;
 import java.util.List;
 
 /**
  * Exposes the data to be used in the Movie_detail screen.
  */
 
-public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel {
+public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel,
+        BaseRecyclerViewAdapter.OnRecyclerViewItemClickListener<Charactor> {
     private static final int GRID_SPAN_COUNT = 4;
-    private List<Charactor> mCharactors = new ArrayList<>();
     private MovieDetailContract.Presenter mPresenter;
+    private Context mContext;
     @Bindable
     private CharactorAdapter mCharactorAdapter;
     @Bindable
     private GridLayoutManager mGridLayoutManager;
 
     public MovieDetailViewModel(Context context) {
-        mCharactorAdapter = new CharactorAdapter();
+
+        mCharactorAdapter = new CharactorAdapter(context);
+        mContext = context;
         mGridLayoutManager = new GridLayoutManager(context, GRID_SPAN_COUNT);
     }
 
@@ -57,6 +62,7 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
     public void setPresenter(MovieDetailContract.Presenter presenter) {
         mPresenter = presenter;
         mPresenter.loadMovieDetail();
+        mCharactorAdapter.setItemClickListener(this);
     }
 
     @Override
@@ -67,5 +73,11 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
 
     @Override
     public void onLoadDetailFail(String err) {
+    }
+
+    @Override
+    public void onItemRecyclerViewClick(Charactor item) {
+        Intent intent = SearchMovieActivity.getMovieIntent(mContext, item.getId());
+        mContext.startActivity(intent);
     }
 }
