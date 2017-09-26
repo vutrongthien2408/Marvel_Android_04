@@ -8,4 +8,5 @@
     <string name="title_popular">Popular</string>
     <string name="title_upcoming">Upcoming</string>
     <string name="the_movie_db">The movie Db</string>
+    <string name="title_favorite">Favorite</string>
 </resources>

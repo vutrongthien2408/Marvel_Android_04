@@ -67,6 +67,10 @@ public class HomeViewModel extends BaseObservable implements HomeContract.ViewMo
                 mContext.startActivity(
                         SearchMovieActivity.getCategoryIntent(mContext, CategoryName.POPULAR));
                 break;
+            case R.id.text_favorite:
+                mContext.startActivity(
+                        SearchMovieActivity.getCategoryIntent(mContext, CategoryName.FAVORITE));
+                break;
             default:
                 mContext.startActivity(SearchMovieActivity.getCategoryIntent(mContext, null));
                 break;

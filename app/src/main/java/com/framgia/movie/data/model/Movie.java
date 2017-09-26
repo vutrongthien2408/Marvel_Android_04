@@ -1,9 +1,12 @@
 package com.framgia.movie.data.model;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.framgia.movie.data.source.local.MovieDataContract;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -113,5 +116,46 @@ public final class Movie extends BaseObservable implements Parcelable {
         mPopularity = in.readString();
         mVoteAverage = in.readFloat();
         mReleaseDate = in.readString();
+    }
+
+    public Movie(Cursor cursor) {
+        mId = cursor.getInt(cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_ID));
+        mTitle = cursor.getString(cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_TITLE));
+        mOverview = cursor.getString(
+                cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_OVERVIEW));
+        mPosterPath = cursor.getString(
+                cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_POSTER_PATH));
+        mPopularity = cursor.getString(
+                cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_POPULARITY));
+        mVoteAverage = cursor.getFloat(
+                cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_VOTE_AVERAGE));
+        mReleaseDate = cursor.getString(
+                cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_RELEASE_DATE));
+    }
+
+    public ContentValues getValue() {
+        ContentValues contentValues = new ContentValues();
+        if (mId != 0) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_ID, mId);
+        }
+        if (mTitle != null) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_TITLE, mTitle);
+        }
+        if (mOverview != null) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_OVERVIEW, mOverview);
+        }
+        if (mPosterPath != null) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_POSTER_PATH, mPosterPath);
+        }
+        if (mPopularity != null) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_POPULARITY, mPopularity);
+        }
+        if (mVoteAverage != 0) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_VOTE_AVERAGE, mVoteAverage);
+        }
+        if (mReleaseDate != null) {
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_RELEASE_DATE, mReleaseDate);
+        }
+        return contentValues;
     }
 }

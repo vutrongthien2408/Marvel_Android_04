@@ -1,13 +1,16 @@
 package com.framgia.movie.screen.search_movie;
 
 import com.framgia.movie.data.model.Movie;
+import com.framgia.movie.data.source.FavoriteRepository;
 import com.framgia.movie.data.source.MovieRepository;
 import com.framgia.movie.data.source.remote.MovieRemoteDataSource;
+import com.framgia.movie.screen.home.CategoryName;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,16 +23,18 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
     private int mCharactorId;
     private final SearchMovieContract.ViewModel mViewModel;
     private MovieRepository mMovieRepository;
+    private FavoriteRepository mFavoriteRepository;
     private CompositeDisposable mCompositeDisposable;
     private String mCategory;
 
     public SearchMoviePresenter(SearchMovieContract.ViewModel viewModel, int charactorId,
-            String category) {
+            String category, FavoriteRepository favoriteRepository) {
         mViewModel = viewModel;
         mCharactorId = charactorId;
         mCategory = category;
         mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
         mCompositeDisposable = new CompositeDisposable();
+        mFavoriteRepository = favoriteRepository;
     }
 
     @Override
@@ -70,7 +75,7 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
 
     @Override
     public void searchMovieByCategory() {
-        if (mCategory.equals("")) {
+        if (mCategory.equals("") || mCategory.equals(CategoryName.FAVORITE)) {
             return;
         }
         Disposable disposable = mMovieRepository.loadMovieByCategory(mCategory)
@@ -88,6 +93,21 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
                     }
                 });
         mCompositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void showFavorite() {
+        if (!mCategory.equals(CategoryName.FAVORITE)) {
+            return;
+        }
+        if (mFavoriteRepository.getMovies() == null) {
+            return;
+        }
+        List<Movie> movies = new ArrayList<>();
+
+        movies.addAll(mFavoriteRepository.getMovies());
+
+        mViewModel.onSearchSuccess(movies);
     }
 
     private void getMovieByCharactorId() {

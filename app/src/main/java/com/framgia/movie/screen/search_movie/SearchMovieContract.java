@@ -27,5 +27,7 @@ interface SearchMovieContract {
         void searchMovieByCharactorId();
 
         void searchMovieByCategory();
+
+        void showFavorite();
     }
 }

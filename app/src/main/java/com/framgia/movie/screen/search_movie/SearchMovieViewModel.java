@@ -61,6 +61,7 @@ public class SearchMovieViewModel extends BaseObservable implements SearchMovieC
         mPresenter = presenter;
         mPresenter.searchMovieByCharactorId();
         mPresenter.searchMovieByCategory();
+        mPresenter.showFavorite();
     }
 
     @Override
