@@ -38,11 +38,12 @@ public class CharactorAdapter extends BaseRecyclerViewAdapter<CharactorAdapter.I
         return new ItemViewHolder(binding, mItemClickListener);
     }
 
-    public void setCharactors(List<Charactor> charactors) {
+    public void updateCharactors(List<Charactor> charactors) {
         if (charactors == null) {
             return;
         }
         mCharactors.addAll(charactors);
+        notifyDataSetChanged();
     }
 
     @Override

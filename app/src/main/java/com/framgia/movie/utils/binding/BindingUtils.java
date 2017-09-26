@@ -4,7 +4,6 @@ import android.databinding.BindingAdapter;
 
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -25,6 +24,9 @@ public final class BindingUtils {
     @BindingAdapter({ "setLayoutManager" })
     public static void setLayoutManager(RecyclerView recyclerView,
             LinearLayoutManager linearLayoutManager) {
+        linearLayoutManager =
+                new LinearLayoutManager(recyclerView.getContext(), LinearLayoutManager.HORIZONTAL,
+                        false);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 

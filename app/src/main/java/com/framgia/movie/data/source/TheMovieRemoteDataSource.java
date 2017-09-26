@@ -26,6 +26,8 @@ public interface TheMovieRemoteDataSource {
         Observable<List<Movie>> loadMovieByGenre(int genreId);
 
         Observable<List<Movie>> loadMovieByCharactor(int charactorId);
+
+        Observable<List<Movie>> loadTheSame(int movieId);
     }
 
     /**
