@@ -1,7 +1,6 @@
 package com.framgia.movie.utils.binding;
 
 import android.databinding.BindingAdapter;
-
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 /**
  * Created by TrongThien on 9/20/2017.
@@ -49,5 +50,14 @@ public final class BindingUtils {
         } else {
             drawerLayout.closeDrawers();
         }
+    }
+
+    @BindingAdapter({ "playYoutubeTrailer" })
+    public static void playYoutubeTrailer(YouTubePlayerView playerView,
+            YouTubePlayer.OnInitializedListener listener) {
+        if (listener == null) {
+            return;
+        }
+        playerView.initialize(com.framgia.movie.BuildConfig.YOUTUBE_API_KEY, listener);
     }
 }

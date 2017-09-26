@@ -40,16 +40,33 @@
                 app:contentScrim="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_300"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="?attr/actionBarSize"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
+                    android:onClick="@{viewModel.onPosterClicked}"
                     app:layout_collapseMode="parallax"
-                    setImage="@{movie.posterPath}"
-                    tools:ignore="ContentDescription"
-                    />
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_300"
+                        android:onClick="@{viewModel.onPosterClicked}"
+                        android:scaleType="fitCenter"
+                        setImage="@{movie.posterPath}"
+                        tools:ignore="ContentDescription"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dp_100"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_play_circle_outline_white_24dp"
+                        tools:ignore="ContentDescription"
+                        />
+                </RelativeLayout>
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
