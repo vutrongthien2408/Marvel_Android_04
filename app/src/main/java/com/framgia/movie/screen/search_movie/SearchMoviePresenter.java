@@ -97,7 +97,7 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
 
     @Override
     public void showFavorite() {
-        if (!mCategory.equals(CategoryName.FAVORITE)) {
+        if (!mCategory.equals(CategoryName.FAVORITE) && !mCategory.equals("")) {
             return;
         }
         if (mFavoriteRepository.getMovies() == null) {
@@ -106,8 +106,19 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
         List<Movie> movies = new ArrayList<>();
 
         movies.addAll(mFavoriteRepository.getMovies());
-
         mViewModel.onSearchSuccess(movies);
+    }
+
+    @Override
+    public void insertMovie(Movie movie) {
+        if (mFavoriteRepository.insertMovie(movie)) {
+            List<Movie> movies = new ArrayList<>();
+            movies.addAll(mFavoriteRepository.getMovies());
+            mViewModel.onInsertMovieSuccess();
+            mViewModel.onSearchSuccess(movies);
+        } else {
+            mViewModel.onInsertMovieFail();
+        }
     }
 
     private void getMovieByCharactorId() {

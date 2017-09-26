@@ -119,7 +119,7 @@ public final class Movie extends BaseObservable implements Parcelable {
     }
 
     public Movie(Cursor cursor) {
-        mId = cursor.getInt(cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_ID));
+        mId = cursor.getInt(cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_MOVIE_ID));
         mTitle = cursor.getString(cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_TITLE));
         mOverview = cursor.getString(
                 cursor.getColumnIndex(MovieDataContract.MovieEntry.COLUMN_OVERVIEW));
@@ -136,7 +136,7 @@ public final class Movie extends BaseObservable implements Parcelable {
     public ContentValues getValue() {
         ContentValues contentValues = new ContentValues();
         if (mId != 0) {
-            contentValues.put(MovieDataContract.MovieEntry.COLUMN_ID, mId);
+            contentValues.put(MovieDataContract.MovieEntry.COLUMN_MOVIE_ID, mId);
         }
         if (mTitle != null) {
             contentValues.put(MovieDataContract.MovieEntry.COLUMN_TITLE, mTitle);
