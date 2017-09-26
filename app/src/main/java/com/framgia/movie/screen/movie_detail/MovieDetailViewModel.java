@@ -1,10 +1,13 @@
 package com.framgia.movie.screen.movie_detail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Charactor;
 import com.framgia.movie.screen.BaseRecyclerViewAdapter;
@@ -17,27 +20,23 @@ import java.util.List;
 
 public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel,
         BaseRecyclerViewAdapter.OnRecyclerViewItemClickListener<Charactor> {
-    private static final int GRID_SPAN_COUNT = 4;
     private MovieDetailContract.Presenter mPresenter;
     private Context mContext;
     @Bindable
     private CharactorAdapter mCharactorAdapter;
     @Bindable
-    private GridLayoutManager mGridLayoutManager;
+    private LinearLayoutManager mLinearLayoutManager;
 
     public MovieDetailViewModel(Context context) {
 
         mCharactorAdapter = new CharactorAdapter(context);
         mContext = context;
-        mGridLayoutManager = new GridLayoutManager(context, GRID_SPAN_COUNT);
+        mLinearLayoutManager =
+                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
     }
 
-    public GridLayoutManager getGridLayoutManager() {
-        return mGridLayoutManager;
-    }
-
-    public void setGridLayoutManager(GridLayoutManager gridLayoutManager) {
-        mGridLayoutManager = gridLayoutManager;
+    public LinearLayoutManager getLinearLayoutManager() {
+        return mLinearLayoutManager;
     }
 
     public CharactorAdapter getCharactorAdapter() {
@@ -46,6 +45,10 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
 
     public void setCharactorAdapter(CharactorAdapter charactorAdapter) {
         mCharactorAdapter = charactorAdapter;
+    }
+
+    public void onBackPress(View view) {
+        ((Activity) (mContext)).finish();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
@@ -23,8 +24,8 @@ public final class BindingUtils {
 
     @BindingAdapter({ "setLayoutManager" })
     public static void setLayoutManager(RecyclerView recyclerView,
-            GridLayoutManager gridLayoutManager) {
-        recyclerView.setLayoutManager(gridLayoutManager);
+            LinearLayoutManager linearLayoutManager) {
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @BindingAdapter({ "pagerAdapter" })

@@ -26,7 +26,7 @@
         <activity
             android:name=".screen.movie_detail.MovieDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/TheMovieTheme"/>
     </application>
 
 </manifest>

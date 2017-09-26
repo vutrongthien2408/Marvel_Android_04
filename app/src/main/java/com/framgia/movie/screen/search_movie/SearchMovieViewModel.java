@@ -1,8 +1,10 @@
 package com.framgia.movie.screen.search_movie;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.view.View;
 import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.screen.movie.MovieAdapter;
@@ -28,6 +30,10 @@ public class SearchMovieViewModel extends BaseObservable implements SearchMovieC
 
     public MovieAdapter getAdapter() {
         return mAdapter;
+    }
+
+    public void onBackPress(View view) {
+        ((Activity) (view.getContext())).finish();
     }
 
     @Override
