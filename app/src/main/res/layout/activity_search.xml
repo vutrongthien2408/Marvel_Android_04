@@ -37,6 +37,7 @@
                     tools:ignore="ContentDescription"
                     />
                 <SearchView
+                    android:id="@+id/search_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:closeIcon="@drawable/ic_clear_white_24dp"
@@ -50,6 +51,7 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_search_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
