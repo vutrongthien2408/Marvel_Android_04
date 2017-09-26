@@ -27,6 +27,6 @@ public class Charactor {
     }
 
     public String getProfilePath() {
-        return mProfilePath;
+        return Movie.BASE_IMAGE_URL + mProfilePath;
     }
 }

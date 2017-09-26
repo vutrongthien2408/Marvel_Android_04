@@ -5,10 +5,15 @@
     >
     <data>
         <variable
+            name="viewModel"
+            type="com.framgia.movie.screen.movie.MovieItemViewModel"
+            />
+        <variable
             name="movie"
             type="com.framgia.movie.data.model.Movie"
             />
     </data>
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:onClick="@{viewModel::onItemClicked}"
             android:orientation="horizontal"
             android:padding="@dimen/dp_10"
             >
@@ -63,4 +69,5 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
 </layout>

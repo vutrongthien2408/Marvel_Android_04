@@ -33,7 +33,7 @@ public class MovieFragment extends BaseFragment {
         savedInstanceState = getArguments();
         int genreId = savedInstanceState.getInt(BUNDLE_GENRE_ID);
 
-        mViewModel = new MovieViewModel();
+        mViewModel = new MovieViewModel(getContext());
         MovieContract.Presenter presenter = new MoviePresenter(mViewModel, genreId);
         mViewModel.setPresenter(presenter);
     }

@@ -14,6 +14,7 @@ import java.util.List;
  */
 
 public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel {
+    private static final int GRID_SPAN_COUNT = 4;
     private List<Charactor> mCharactors = new ArrayList<>();
     private MovieDetailContract.Presenter mPresenter;
     @Bindable
@@ -23,7 +24,7 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
 
     public MovieDetailViewModel(Context context) {
         mCharactorAdapter = new CharactorAdapter();
-        mGridLayoutManager = new GridLayoutManager(context, mCharactors.size());
+        mGridLayoutManager = new GridLayoutManager(context, GRID_SPAN_COUNT);
     }
 
     public GridLayoutManager getGridLayoutManager() {
@@ -55,6 +56,7 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
     @Override
     public void setPresenter(MovieDetailContract.Presenter presenter) {
         mPresenter = presenter;
+        mPresenter.loadMovieDetail();
     }
 
     @Override
