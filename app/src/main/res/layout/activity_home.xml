@@ -29,17 +29,30 @@
                 android:layout_height="@dimen/dp_48"
                 android:background="@color/colorPrimary"
                 android:paddingEnd="@dimen/dp_30"
-                app:title="@string/app_name"
                 app:titleTextColor="@android:color/white"
                 tools:ignore="RtlCompat"
                 >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:src="@drawable/ic_menu_white_24dp"
+                    tools:ignore="ContentDescription"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@android:color/white"
+                    style="?android:attr/textAppearanceLarge"
+                    />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:onClick="@{viewModel.onSearch}"
-                    android:src="@android:drawable/ic_menu_search"
+                    android:src="@drawable/ic_search_white_24dp"
                     tools:ignore="ContentDescription"
                     />
 

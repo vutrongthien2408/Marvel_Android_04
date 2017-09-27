@@ -2,7 +2,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
@@ -28,11 +28,20 @@
                 android:layout_height="@dimen/dp_48"
                 android:background="@color/colorPrimary"
                 >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{viewModel.onBackPress}"
+                    android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
+                    tools:ignore="ContentDescription"
+                    />
                 <SearchView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:closeIcon="@drawable/ic_clear_white_24dp"
                     android:iconifiedByDefault="false"
                     android:queryHint="@string/search_movie"
+                    android:searchIcon="@drawable/ic_search_white_24dp"
                     android:theme="@android:style/Theme.Holo"
                     />
 
