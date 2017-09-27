@@ -15,19 +15,15 @@ public class MovieResponse {
     @SerializedName("results")
     @Expose
     private List<Movie> mMovies = new ArrayList<>();
-    @SerializedName("id")
+    @SerializedName("cast")
     @Expose
-    private int mId;
+    private List<Movie> mMovieByCharactors = new ArrayList<>();
 
-    public MovieResponse(List<Movie> movies) {
-        mMovies = movies;
+    public List<Movie> getMovieByCharactors() {
+        return mMovieByCharactors;
     }
 
     public List<Movie> getMovies() {
         return mMovies;
-    }
-
-    public int getId() {
-        return mId;
     }
 }

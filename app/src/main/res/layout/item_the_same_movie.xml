@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="movie"
+            type="com.framgia.movie.data.model.Movie"
+            />
+        <variable
+            name="viewModel"
+            type="com.framgia.movie.screen.movie.MovieItemViewModel"
+            />
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="@{viewModel.onItemClicked}"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            bind:setImage="@{movie.posterPath}"
+            tools:ignore="ContentDescription"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movie.title}"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+</layout>

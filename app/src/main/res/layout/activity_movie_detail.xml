@@ -126,6 +126,7 @@
                     android:text="@{movie.voteAverage}"
                     android:textColor="@android:color/black"
                     />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,12 +134,25 @@
                     android:text="@string/character"
                     android:textColor="@android:color/black"
                     />
+
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@integer/int_2"
+                    android:layout_height="wrap_content"
                     bind:setLayoutManager="@{viewModel.linearLayoutManager}"
-                    recyclerAdapter="@{viewModel.charactorAdapter}"
+                    bind:recyclerAdapter="@{viewModel.charactorAdapter}"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="@string/the_same_movie"
+                    android:textColor="@android:color/black"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    bind:recyclerAdapter="@{viewModel.theSameMovieAdapter}"
+                    bind:setLayoutManager="@{viewModel.linearLayoutManager}"
                     />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

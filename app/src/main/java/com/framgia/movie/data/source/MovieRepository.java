@@ -33,4 +33,9 @@ public final class MovieRepository implements TheMovieRemoteDataSource.MovieData
     public Observable<List<Movie>> loadMovieByCharactor(int charactorId) {
         return mMovieRemoteDataSource.loadMovieByCharactor(charactorId);
     }
+
+    @Override
+    public Observable<List<Movie>> loadTheSame(int movieId) {
+        return mMovieRemoteDataSource.loadTheSame(movieId);
+    }
 }

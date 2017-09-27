@@ -2,7 +2,6 @@ package com.framgia.movie.data.source.remote.api.the_movie_api;
 
 import com.framgia.movie.data.model.CharactorRespone;
 import com.framgia.movie.data.model.GenreReponse;
-import com.framgia.movie.data.model.MovieByCharactorRespone;
 import com.framgia.movie.data.model.MovieResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -42,6 +41,13 @@ public interface TheMovieApi {
      * Get movie by charactor
      */
     @GET("{version}/person/{person_id}/movie_credits")
-    Observable<MovieByCharactorRespone> loadMovieByCharactor(@Path("version") String version,
+    Observable<MovieResponse> loadMovieByCharactor(@Path("version") String version,
             @Path("person_id") int personId, @Query("api_key") String apiKey);
+
+    /**
+     * Get the same movie
+     */
+    @GET("{version}/movie/{movie_id}/similar")
+    Observable<MovieResponse> loadTheSameMovie(@Path("version") String version,
+            @Path("movie_id") int movieId, @Query("api_key") String apiKey);
 }

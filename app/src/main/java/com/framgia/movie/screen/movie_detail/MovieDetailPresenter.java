@@ -3,7 +3,9 @@ package com.framgia.movie.screen.movie_detail;
 import com.framgia.movie.data.model.Charactor;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.data.source.CharactorRepository;
+import com.framgia.movie.data.source.MovieRepository;
 import com.framgia.movie.data.source.remote.CharactorRemoteDataSource;
+import com.framgia.movie.data.source.remote.MovieRemoteDataSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -25,9 +27,11 @@ final class MovieDetailPresenter implements MovieDetailContract.Presenter {
     private int mMovieId;
     private CharactorRepository mRepository;
     private CompositeDisposable mCompositeDisposable;
+    private MovieRepository mMovieRepository;
 
     public MovieDetailPresenter(MovieDetailContract.ViewModel viewModel, int movieId) {
         mRepository = CharactorRepository.getInstance(CharactorRemoteDataSource.getInstance());
+        mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
         mViewModel = viewModel;
         mMovieId = movieId;
         mCompositeDisposable = new CompositeDisposable();
@@ -68,8 +72,35 @@ final class MovieDetailPresenter implements MovieDetailContract.Presenter {
         mCompositeDisposable.add(disposable);
     }
 
+    private void getTheSameMovie() {
+        Disposable disposable = mMovieRepository.loadTheSame(mMovieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        List<Movie> movieList = new ArrayList<>();
+                        if (movies.size() > CHARACTOR_LIST_SIZE) {
+                            for (int i = 0; i < CHARACTOR_LIST_SIZE; i++) {
+                                movieList.add(movies.get(i));
+                            }
+                        } else {
+                            movieList.addAll(movies);
+                        }
+                        mViewModel.onLoadTheSameMovieSuccess(movieList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mViewModel.onLoadTheSameMovieFail(throwable.toString());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
     @Override
     public void loadMovieDetail() {
         getCharactor();
+        getTheSameMovie();
     }
 }

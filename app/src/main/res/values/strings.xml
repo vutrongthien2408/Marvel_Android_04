@@ -2,4 +2,5 @@
     <string name="app_name">Marvel_Android_04</string>
     <string name="search_movie">search movie</string>
     <string name="character">Character</string>
+    <string name="the_same_movie">The Same Movie</string>
 </resources>
