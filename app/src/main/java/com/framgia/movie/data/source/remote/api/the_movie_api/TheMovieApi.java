@@ -50,4 +50,12 @@ public interface TheMovieApi {
     @GET("{version}/movie/{movie_id}/similar")
     Observable<MovieResponse> loadTheSameMovie(@Path("version") String version,
             @Path("movie_id") int movieId, @Query("api_key") String apiKey);
+
+    /**
+     * Get movie by name
+     */
+    @GET("{version}/search/movie")
+    Observable<MovieResponse> loadMovieByName(@Path("version") String version,
+            @Query("api_key") String apiKey, @Query("query") String movieName,
+            @Query("primary_release_year") int year);
 }

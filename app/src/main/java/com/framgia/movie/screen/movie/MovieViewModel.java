@@ -54,8 +54,7 @@ public class MovieViewModel extends BaseObservable implements MovieContract.View
 
     @Override
     public void onGetMovieSuccess(List<Movie> movies) {
-        mAdapter.setMovies(movies);
-        notifyPropertyChanged(BR.adapter);
+        mAdapter.updateMovie(movies);
     }
 
     @Override

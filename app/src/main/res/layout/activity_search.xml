@@ -2,6 +2,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
@@ -40,6 +41,7 @@
                     android:layout_height="match_parent"
                     android:closeIcon="@drawable/ic_clear_white_24dp"
                     android:iconifiedByDefault="false"
+                    android:onQueryTextSubmit="@{viewModel.onQueryTextSubmit}"
                     android:queryHint="@string/search_movie"
                     android:searchIcon="@drawable/ic_search_white_24dp"
                     android:theme="@android:style/Theme.Holo"

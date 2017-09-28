@@ -37,8 +37,13 @@ public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ItemViewH
         mItemClickListener = itemClickListener;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void updateMovie(List<Movie> movies) {
+        if (movies == null) {
+            return;
+        }
+        mMovies.clear();
         mMovies.addAll(movies);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -55,7 +60,7 @@ public class MovieAdapter extends BaseRecyclerViewAdapter<MovieAdapter.ItemViewH
 
     @Override
     public int getItemCount() {
-        return mMovies.size();
+        return (mMovies == null) ? 0 : mMovies.size();
     }
 
     /**

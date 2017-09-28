@@ -10,6 +10,7 @@ import com.framgia.movie.screen.BaseActivity;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -67,6 +68,23 @@ public final class MovieRemoteDataSource implements TheMovieRemoteDataSource.Mov
     @Override
     public Observable<List<Movie>> loadTheSame(int movieId) {
         return mMovieApi.loadTheSameMovie(BaseActivity.API_VERSION, movieId, BuildConfig.API_KEY)
+                .flatMap(new Function<MovieResponse, ObservableSource<List<Movie>>>() {
+
+                    @Override
+                    public ObservableSource<List<Movie>> apply(MovieResponse movieResponse)
+                            throws Exception {
+                        if (movieResponse != null) {
+                            return Observable.just(movieResponse.getMovies());
+                        }
+                        return Observable.error(new NullPointerException());
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<Movie>> loadMovieByName(String name) {
+        return mMovieApi.loadMovieByName(BaseActivity.API_VERSION, BuildConfig.API_KEY, name,
+                Calendar.getInstance().get(Calendar.YEAR))
                 .flatMap(new Function<MovieResponse, ObservableSource<List<Movie>>>() {
 
                     @Override
