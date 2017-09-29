@@ -25,5 +25,7 @@ interface SearchMovieContract {
         void searchMovieByName(String name);
 
         void searchMovieByCharactorId();
+
+        void searchMovieByCategory();
     }
 }

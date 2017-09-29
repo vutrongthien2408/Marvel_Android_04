@@ -15,6 +15,7 @@ public class SearchMovieActivity extends BaseActivity {
 
     public static final String EXTRA_CHARACTOR_ID = "EXTRA_PEOPLE_ID";
     public static final int CHARACTOR_ID_DEFAULT = 0;
+    private static final String EXTRA_CATEGORY_NAME = "EXTRA_CATEGORY_NAME";
     private SearchMovieContract.ViewModel mViewModel;
 
     public static Intent getMovieIntent(Context context, int charactorId) {
@@ -23,19 +24,34 @@ public class SearchMovieActivity extends BaseActivity {
         return intent;
     }
 
+    public static Intent getCategoryIntent(Context context, String category) {
+        Intent intent = new Intent(context, SearchMovieActivity.class);
+        if (category != null) {
+            intent.putExtra(EXTRA_CATEGORY_NAME, category);
+            return intent;
+        } else {
+            return intent;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int charactorId;
+        String category;
         if (getIntent() != null) {
             charactorId = getIntent().getIntExtra(EXTRA_CHARACTOR_ID, CHARACTOR_ID_DEFAULT);
+            category = (getIntent().getStringExtra(EXTRA_CATEGORY_NAME) == null) ? ""
+                    : getIntent().getStringExtra(EXTRA_CATEGORY_NAME);
         } else {
             charactorId = CHARACTOR_ID_DEFAULT;
+            category = "";
         }
 
         mViewModel = new SearchMovieViewModel(this);
 
-        SearchMovieContract.Presenter presenter = new SearchMoviePresenter(mViewModel, charactorId);
+        SearchMovieContract.Presenter presenter =
+                new SearchMoviePresenter(mViewModel, charactorId, category);
         mViewModel.setPresenter(presenter);
 
         ActivitySearchBinding binding =

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10"
+    >
+
+    <ImageView
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher_round"
+        tools:ignore="ContentDescription"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="@string/the_movie_db"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold|italic"
+        style="?android:attr/textAppearanceLarge"
+        />
+</LinearLayout>

@@ -3,4 +3,9 @@
     <string name="search_movie">search movie</string>
     <string name="character">Character</string>
     <string name="the_same_movie">The Same Movie</string>
+    <string name="title_now_playing">Now playing</string>
+    <string name="title_top_rated">Top rated</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="the_movie_db">The movie Db</string>
 </resources>

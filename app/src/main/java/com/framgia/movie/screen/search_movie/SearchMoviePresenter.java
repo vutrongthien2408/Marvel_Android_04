@@ -21,10 +21,13 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
     private final SearchMovieContract.ViewModel mViewModel;
     private MovieRepository mMovieRepository;
     private CompositeDisposable mCompositeDisposable;
+    private String mCategory;
 
-    public SearchMoviePresenter(SearchMovieContract.ViewModel viewModel, int charactorId) {
+    public SearchMoviePresenter(SearchMovieContract.ViewModel viewModel, int charactorId,
+            String category) {
         mViewModel = viewModel;
         mCharactorId = charactorId;
+        mCategory = category;
         mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
         mCompositeDisposable = new CompositeDisposable();
     }
@@ -63,6 +66,28 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
             return;
         }
         getMovieByCharactorId();
+    }
+
+    @Override
+    public void searchMovieByCategory() {
+        if (mCategory.equals("")) {
+            return;
+        }
+        Disposable disposable = mMovieRepository.loadMovieByCategory(mCategory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Movie>>() {
+                    @Override
+                    public void accept(List<Movie> movies) throws Exception {
+                        mViewModel.onSearchSuccess(movies);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mViewModel.onSearchFail(throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     private void getMovieByCharactorId() {

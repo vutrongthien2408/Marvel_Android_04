@@ -30,6 +30,8 @@ public interface TheMovieRemoteDataSource {
         Observable<List<Movie>> loadTheSame(int movieId);
 
         Observable<List<Movie>> loadMovieByName(String name);
+
+        Observable<List<Movie>> loadMovieByCategory(String category);
     }
 
     /**

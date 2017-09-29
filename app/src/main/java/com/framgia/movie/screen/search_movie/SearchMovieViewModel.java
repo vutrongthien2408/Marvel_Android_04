@@ -60,6 +60,7 @@ public class SearchMovieViewModel extends BaseObservable implements SearchMovieC
     public void setPresenter(SearchMovieContract.Presenter presenter) {
         mPresenter = presenter;
         mPresenter.searchMovieByCharactorId();
+        mPresenter.searchMovieByCategory();
     }
 
     @Override
