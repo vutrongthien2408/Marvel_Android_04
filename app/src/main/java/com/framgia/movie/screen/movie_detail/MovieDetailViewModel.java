@@ -2,6 +2,7 @@ package com.framgia.movie.screen.movie_detail;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import com.framgia.movie.data.model.Charactor;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.screen.BaseRecyclerViewAdapter;
 import com.framgia.movie.screen.search_movie.SearchMovieActivity;
+import com.framgia.movie.screen.video_trailer.VideoTrailerActivity;
 import java.util.List;
 
 /**
@@ -36,6 +38,11 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
         mTheSameMovieAdapter = new TheSameMovieAdapter(context);
         mContext = context;
         setListener();
+    }
+
+    public void onPosterClicked(View view) {
+        Intent intent = VideoTrailerActivity.getVideoIntent(mContext, mMovieId);
+        mContext.startActivity(intent);
     }
 
     public LinearLayoutManager getLinearLayoutManager() {

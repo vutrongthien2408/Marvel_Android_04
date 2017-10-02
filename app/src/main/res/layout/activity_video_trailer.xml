@@ -4,6 +4,15 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.framgia.movie.screen.video_trailer.VideoTrailerViewModel"
+            />
+
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,15 +30,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewModel.onBackPress}"
                     android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
                     tools:ignore="ContentDescription"
-
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginStart="@dimen/dp_10"
+                    android:text="@{viewModel.name}"
                     android:textColor="@android:color/white"
                     />
             </android.support.v7.widget.Toolbar>
@@ -38,6 +48,7 @@
         <com.google.android.youtube.player.YouTubePlayerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            bind:playYoutubeTrailer="@{viewModel.listener}"
             />
     </LinearLayout>
 </layout>
