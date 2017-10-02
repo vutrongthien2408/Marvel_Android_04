@@ -21,6 +21,8 @@ interface MovieDetailContract {
         void onLoadTheSameMovieSuccess(List<Movie> movies);
 
         void onLoadTheSameMovieFail(String err);
+
+        void setMovieId(int movieId);
     }
 
     /**

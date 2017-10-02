@@ -7,6 +7,7 @@ import android.databinding.Bindable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
+import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Charactor;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.screen.BaseRecyclerViewAdapter;
@@ -17,7 +18,7 @@ import java.util.List;
  * Exposes the data to be used in the Movie_detail screen.
  */
 
-public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel{
+public class MovieDetailViewModel extends BaseObservable implements MovieDetailContract.ViewModel {
     private MovieDetailContract.Presenter mPresenter;
     private Context mContext;
     @Bindable
@@ -26,6 +27,8 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
     private TheSameMovieAdapter mTheSameMovieAdapter;
     @Bindable
     private LinearLayoutManager mLinearLayoutManager;
+    @Bindable
+    private int mMovieId;
 
     public MovieDetailViewModel(Context context) {
 
@@ -85,6 +88,12 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
     @Override
     public void onLoadTheSameMovieFail(String err) {
         Toast.makeText(mContext, err, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setMovieId(int movieId) {
+        mMovieId = movieId;
+        notifyPropertyChanged(BR.movieId);
     }
 
     public void setListener() {

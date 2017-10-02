@@ -3,6 +3,7 @@ package com.framgia.movie.data.source;
 import com.framgia.movie.data.model.Charactor;
 import com.framgia.movie.data.model.Genre;
 import com.framgia.movie.data.model.Movie;
+import com.framgia.movie.data.model.MovieTrailer;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -39,5 +40,13 @@ public interface TheMovieRemoteDataSource {
      */
     interface CharactorDataSource {
         Observable<List<Charactor>> loadCharactorByMovie(int movieId);
+    }
+
+    /**
+     * load movie trailer by movie id
+     */
+
+    interface MovieTrailerDataSource {
+        Observable<List<MovieTrailer>> loadMovieTrailer(int movieId);
     }
 }
