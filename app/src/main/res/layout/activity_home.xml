@@ -178,6 +178,27 @@
                         style="?android:attr/textAppearanceMedium"
                         />
                 </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/cardview_default_radius"
+                    >
+                    <TextView
+                        android:id="@+id/text_favorite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/holo_blue_light"
+                        android:onClick="@{viewModel.onItemNaviClicked}"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:paddingEnd="@dimen/dp_10"
+                        android:paddingStart="@dimen/dp_30"
+                        android:paddingTop="@dimen/dp_10"
+                        android:text="@string/title_favorite"
+                        android:textColor="@android:color/white"
+                        tools:ignore="RtlCompat"
+                        style="?android:attr/textAppearanceMedium"
+                        />
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </android.support.v4.widget.DrawerLayout>
     </LinearLayout>

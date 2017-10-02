@@ -5,6 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import static com.framgia.movie.screen.home.CategoryName.COMING_UP;
+import static com.framgia.movie.screen.home.CategoryName.FAVORITE;
 import static com.framgia.movie.screen.home.CategoryName.NOW_PLAYING;
 import static com.framgia.movie.screen.home.CategoryName.POPULAR;
 import static com.framgia.movie.screen.home.CategoryName.TOP_RATED;
@@ -18,10 +19,11 @@ import static com.framgia.movie.screen.home.CategoryName.TOP_RATED;
  */
 
 @Retention(RetentionPolicy.SOURCE)
-@StringDef({ NOW_PLAYING, COMING_UP, TOP_RATED, POPULAR })
+@StringDef({ NOW_PLAYING, COMING_UP, TOP_RATED, POPULAR, FAVORITE })
 public @interface CategoryName {
     String NOW_PLAYING = "now_playing";
     String COMING_UP = "upcoming";
     String TOP_RATED = "top_rated";
     String POPULAR = "popular";
+    String FAVORITE = "favorite";
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import com.framgia.movie.R;
+import com.framgia.movie.data.source.FavoriteRepository;
+import com.framgia.movie.data.source.local.FavoriteLocalDataSource;
 import com.framgia.movie.databinding.ActivitySearchBinding;
 import com.framgia.movie.screen.BaseActivity;
 
@@ -51,7 +53,8 @@ public class SearchMovieActivity extends BaseActivity {
         mViewModel = new SearchMovieViewModel(this);
 
         SearchMovieContract.Presenter presenter =
-                new SearchMoviePresenter(mViewModel, charactorId, category);
+                new SearchMoviePresenter(mViewModel, charactorId, category,
+                        FavoriteRepository.getInstance(FavoriteLocalDataSource.getInstance(this)));
         mViewModel.setPresenter(presenter);
 
         ActivitySearchBinding binding =
