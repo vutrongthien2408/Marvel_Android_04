@@ -15,13 +15,19 @@ import java.util.List;
  * updates
  * the UI as required.
  */
-final class VideoTrailerPresenter implements VideoTrailerContract.Presenter {
+public class VideoTrailerPresenter implements VideoTrailerContract.Presenter {
     private static final int FIRST_ITEM = 0;
 
-    private final VideoTrailerContract.ViewModel mViewModel;
+    private VideoTrailerContract.ViewModel mViewModel;
     private int mMovieId;
     private MovieTrailerRepository mTrailerRepository;
     private CompositeDisposable mCompositeDisposable;
+
+    public VideoTrailerPresenter() {
+        mCompositeDisposable = new CompositeDisposable();
+        mTrailerRepository =
+                MovieTrailerRepository.getInstance(MovieTrailerDataSource.getInstance());
+    }
 
     public VideoTrailerPresenter(VideoTrailerContract.ViewModel viewModel, int movieId) {
         mViewModel = viewModel;
@@ -29,6 +35,10 @@ final class VideoTrailerPresenter implements VideoTrailerContract.Presenter {
         mCompositeDisposable = new CompositeDisposable();
         mTrailerRepository =
                 MovieTrailerRepository.getInstance(MovieTrailerDataSource.getInstance());
+    }
+
+    public void setViewModel(VideoTrailerContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     @Override

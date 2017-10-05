@@ -14,18 +14,27 @@ import java.util.List;
  * Listens to user actions from the UI ({@link MovieFragment}), retrieves the data and updates
  * the UI as required.
  */
-final class MoviePresenter implements MovieContract.Presenter {
+public class MoviePresenter implements MovieContract.Presenter {
 
-    private final MovieContract.ViewModel mViewModel;
+    private MovieContract.ViewModel mViewModel;
     private MovieRepository mMovieRepository;
     private int mGenreId;
     private CompositeDisposable mCompositeDisposable;
+
+    public MoviePresenter() {
+        mCompositeDisposable = new CompositeDisposable();
+        mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
+    }
 
     public MoviePresenter(MovieContract.ViewModel viewModel, int genreId) {
         mViewModel = viewModel;
         mGenreId = genreId;
         mCompositeDisposable = new CompositeDisposable();
         mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
+    }
+
+    public void setViewModel(MovieContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     private void getListMovie() {
