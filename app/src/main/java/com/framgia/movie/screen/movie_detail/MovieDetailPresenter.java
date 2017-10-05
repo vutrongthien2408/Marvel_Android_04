@@ -19,15 +19,21 @@ import java.util.List;
  * updates
  * the UI as required.
  */
-final class MovieDetailPresenter implements MovieDetailContract.Presenter {
+public class MovieDetailPresenter implements MovieDetailContract.Presenter {
     private static final String TAG = MovieDetailPresenter.class.getName();
     private static final int CHARACTOR_LIST_SIZE = 20;
 
-    private final MovieDetailContract.ViewModel mViewModel;
+    private MovieDetailContract.ViewModel mViewModel;
     private int mMovieId;
     private CharactorRepository mRepository;
     private CompositeDisposable mCompositeDisposable;
     private MovieRepository mMovieRepository;
+
+    public MovieDetailPresenter() {
+        mRepository = CharactorRepository.getInstance(CharactorRemoteDataSource.getInstance());
+        mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
+        mCompositeDisposable = new CompositeDisposable();
+    }
 
     public MovieDetailPresenter(MovieDetailContract.ViewModel viewModel, int movieId) {
         mRepository = CharactorRepository.getInstance(CharactorRemoteDataSource.getInstance());
@@ -35,6 +41,10 @@ final class MovieDetailPresenter implements MovieDetailContract.Presenter {
         mViewModel = viewModel;
         mMovieId = movieId;
         mCompositeDisposable = new CompositeDisposable();
+    }
+
+    public void setViewModel(MovieDetailContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     @Override

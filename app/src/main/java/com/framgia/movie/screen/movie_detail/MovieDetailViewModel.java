@@ -40,6 +40,14 @@ public class MovieDetailViewModel extends BaseObservable implements MovieDetailC
         setListener();
     }
 
+    public void setCharactorAdapter(CharactorAdapter charactorAdapter) {
+        mCharactorAdapter = charactorAdapter;
+    }
+
+    public void setTheSameMovieAdapter(TheSameMovieAdapter theSameMovieAdapter) {
+        mTheSameMovieAdapter = theSameMovieAdapter;
+    }
+
     public void onPosterClicked(View view) {
         Intent intent = VideoTrailerActivity.getVideoIntent(mContext, mMovieId);
         mContext.startActivity(intent);

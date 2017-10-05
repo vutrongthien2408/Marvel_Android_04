@@ -18,14 +18,19 @@ import java.util.List;
  * updates
  * the UI as required.
  */
-final class SearchMoviePresenter implements SearchMovieContract.Presenter {
+public class SearchMoviePresenter implements SearchMovieContract.Presenter {
     private static final String TAG = SearchMoviePresenter.class.getName();
     private int mCharactorId;
-    private final SearchMovieContract.ViewModel mViewModel;
+    private SearchMovieContract.ViewModel mViewModel;
     private MovieRepository mMovieRepository;
     private FavoriteRepository mFavoriteRepository;
     private CompositeDisposable mCompositeDisposable;
     private String mCategory;
+
+    public SearchMoviePresenter() {
+        mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
+        mCompositeDisposable = new CompositeDisposable();
+    }
 
     public SearchMoviePresenter(SearchMovieContract.ViewModel viewModel, int charactorId,
             String category, FavoriteRepository favoriteRepository) {
@@ -35,6 +40,22 @@ final class SearchMoviePresenter implements SearchMovieContract.Presenter {
         mMovieRepository = MovieRepository.getInstance(MovieRemoteDataSource.getInstance());
         mCompositeDisposable = new CompositeDisposable();
         mFavoriteRepository = favoriteRepository;
+    }
+
+    public void setCharactorId(int charactorId) {
+        mCharactorId = charactorId;
+    }
+
+    public void setCategory(String category) {
+        mCategory = category;
+    }
+
+    public void setFavoriteRepository(FavoriteRepository favoriteRepository) {
+        mFavoriteRepository = favoriteRepository;
+    }
+
+    public void setViewModel(SearchMovieContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     @Override

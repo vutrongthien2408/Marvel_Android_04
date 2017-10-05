@@ -8,7 +8,7 @@ import java.util.List;
  * Created by TrongThien on 10/2/2017.
  */
 
-public final class FavoriteRepository implements FavoriteDataSource {
+public class FavoriteRepository implements FavoriteDataSource {
     private static FavoriteRepository sFavoriteRepository;
     private FavoriteLocalDataSource mFavoriteLocalDataSource;
 

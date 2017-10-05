@@ -87,6 +87,9 @@ public final class Movie extends BaseObservable implements Parcelable {
         return 0;
     }
 
+    public Movie() {
+    }
+
     @Override
     public void writeToParcel(Parcel out, int i) {
         out.writeInt(mId);

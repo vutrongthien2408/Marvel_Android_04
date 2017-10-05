@@ -34,6 +34,10 @@ public class SearchMovieViewModel extends BaseObservable implements SearchMovieC
         return mAdapter;
     }
 
+    public void setAdapter(MovieAdapter adapter) {
+        mAdapter = adapter;
+    }
+
     public void onBackPress(View view) {
         ((Activity) (view.getContext())).finish();
     }

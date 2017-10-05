@@ -18,6 +18,9 @@ public class Charactor {
     @Expose
     private String mProfilePath;
 
+    public Charactor() {
+    }
+
     public int getId() {
         return mId;
     }

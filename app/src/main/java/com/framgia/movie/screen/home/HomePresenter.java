@@ -14,16 +14,28 @@ import java.util.List;
  * Listens to user actions from the UI ({@link HomeActivity}), retrieves the data and updates
  * the UI as required.
  */
-final class HomePresenter implements HomeContract.Presenter {
+public class HomePresenter implements HomeContract.Presenter {
     private GenreRepository mGenreRepository;
 
-    private final HomeContract.ViewModel mViewModel;
+    private HomeContract.ViewModel mViewModel;
     private CompositeDisposable mCompositeDisposable;
 
     public HomePresenter(HomeContract.ViewModel viewModel) {
         mViewModel = viewModel;
         mCompositeDisposable = new CompositeDisposable();
         mGenreRepository = GenreRepository.getInstance(GenreRemoteDataSource.getInstance());
+    }
+
+    public HomePresenter() {
+        mCompositeDisposable = new CompositeDisposable();
+    }
+
+    public void setGenreRepository(GenreRepository genreRepository) {
+        mGenreRepository = genreRepository;
+    }
+
+    public void setViewModel(HomeContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     private void getListGenres() {
