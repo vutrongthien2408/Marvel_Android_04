@@ -75,6 +75,25 @@ public class SearchMovieViewModel extends BaseObservable implements SearchMovieC
     }
 
     @Override
+    public void saveMovieToFavorite(Movie movie) {
+        if (movie == null) {
+            return;
+        }
+        mPresenter.insertMovie(movie);
+    }
+
+    @Override
+    public void onInsertMovieSuccess() {
+        Toast.makeText(mContext, "Insert success to my favorite", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInsertMovieFail() {
+        Toast.makeText(mContext, "The movie already exists", Toast.LENGTH_SHORT).show();
+        ((Activity) mContext).finish();
+    }
+
+    @Override
     public void onItemRecyclerViewClick(Movie item) {
         mContext.startActivity(MovieDetailActivity.getMovieIntent(mContext, item));
     }

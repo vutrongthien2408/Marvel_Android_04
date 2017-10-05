@@ -16,6 +16,12 @@ interface SearchMovieContract {
         void onSearchSuccess(List<Movie> movies);
 
         void onSearchFail(String err);
+
+        void saveMovieToFavorite(Movie movie);
+
+        void onInsertMovieSuccess();
+
+        void onInsertMovieFail();
     }
 
     /**
@@ -29,5 +35,7 @@ interface SearchMovieContract {
         void searchMovieByCategory();
 
         void showFavorite();
+
+        void insertMovie(Movie movie);
     }
 }

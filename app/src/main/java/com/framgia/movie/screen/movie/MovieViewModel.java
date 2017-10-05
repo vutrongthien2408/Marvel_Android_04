@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
-import com.framgia.movie.BR;
 import com.framgia.movie.data.model.Movie;
 import com.framgia.movie.screen.BaseRecyclerViewAdapter;
 import com.framgia.movie.screen.movie_detail.MovieDetailActivity;

@@ -9,4 +9,5 @@
     <string name="title_upcoming">Upcoming</string>
     <string name="the_movie_db">The movie Db</string>
     <string name="title_favorite">Favorite</string>
+    <string name="save_my_favorite">save my favorite</string>
 </resources>
