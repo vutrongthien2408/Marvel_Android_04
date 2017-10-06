@@ -18,7 +18,7 @@ import java.util.List;
  * updates
  * the UI as required.
  */
-final class SearchMoviePresenter implements SearchMovieContract.Presenter {
+public class SearchMoviePresenter implements SearchMovieContract.Presenter {
     private static final String TAG = SearchMoviePresenter.class.getName();
     private int mCharactorId;
     private final SearchMovieContract.ViewModel mViewModel;

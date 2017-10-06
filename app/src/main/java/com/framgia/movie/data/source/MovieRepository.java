@@ -9,7 +9,7 @@ import java.util.List;
  * Created by TrongThien on 9/19/2017.
  */
 
-public final class MovieRepository implements TheMovieRemoteDataSource.MovieDataSource {
+public class MovieRepository implements TheMovieRemoteDataSource.MovieDataSource {
     private MovieRemoteDataSource mMovieRemoteDataSource;
     private static MovieRepository sMovieRepository;
 
